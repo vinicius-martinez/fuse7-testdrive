@@ -21,13 +21,18 @@ For additional details, please refer to [Additional References](#testdrive-addit
 ### Setup Developer Studio <a name="testdrive-step-0"></a>
 
 * Create an account or LogIn on [Red Hat Developer](https://developers.redhat.com)
-* Download [Red Hat Developer Studio 12.9; Installer](https://developers.redhat.com/download-manager/file/devstudio-12.9.0.GA-installer-standalone.jar) from [Red Hat Developers](https://developers.redhat.com/products/devstudio/overview/);
+* Download [Red Hat Developer Studio 12.9 Installer](https://developers.redhat.com/download-manager/file/devstudio-12.9.0.GA-installer-standalone.jar) from [Red Hat Developers](https://developers.redhat.com/products/devstudio/overview/);
+
 ![Dev Studio Download](https://github.com/vinicius-martinez/fuse7-testdrive/blob/master/images/lab0-devstudio-download.png "Texto")
+
 * Install **Red Hat Developer Studio** via *java -jar*. Example:
 
 ```
 java -jar devstudio-12.9.0.GA-installer-standalone.jar
 ```
 
+* When prompted for **Fuse Tooling**, enable it:
+
 ![Fuse Tooling](https://github.com/vinicius-martinez/fuse7-testdrive/blob/master/images/lab0-enablefusetooling.png "Enable Fuse Tooling")
+
 ## Additional References <a name="demo-additional-references">
