@@ -1,6 +1,6 @@
 # Introduction
 
-This repository will host a series of labs/demonstrations showcasing a series of features and capabilities provided by JBoss Fuse.
+This repository will host a series of labs/demonstrations showcasing a series of features and capabilities provided by **Red Hat Fuse, Spring Boot, Red Hat AMQ and Red Hat Openshift Container Platform.**
 
 For additional details, please refer to [Additional References](#testdrive-additional-references) section.
 
@@ -16,6 +16,7 @@ For additional details, please refer to [Additional References](#testdrive-addit
 
 0. [Setup Developer Studio 12.9](#testdrive-step-0)
 1. [Configure Maven](#testdrive-step-1)
+2. [Create your first Fuse Project](#testdrive-step-2)
 2. [Installing AMQ-7.2 Broker](#testdrive-step-1)
 
 ### Setup Developer Studio <a name="testdrive-step-0"></a>
@@ -196,7 +197,7 @@ Red Hat EA repository: https://maven.repository.redhat.com/earlyaccess/all
   <activeProfiles>
     <activeProfile>default</activeProfile>
   </activeProfiles>
-  
+
 </settings>
 ```
 
@@ -253,5 +254,22 @@ mvn clean install
 [INFO] Finished at: 2018-11-16T17:22:05-02:00
 [INFO] ------------------------------------------------------------------------
 ```
+
+### Create your first Fuse Project <a name="testdrive-step-2"></a>
+
+* Open **Red Hat Developer Studio**
+
+* Click on: *File -> New -> Fuse Integration Project*
+
+  * *Project Name: Lab02*
+  * *Path: default value*
+  * *Use default Workspace location: checked*
+  * *Finish*
+
+![Lab02](https://github.com/vinicius-martinez/fuse7-testdrive/blob/master/images/lab02-projectcreation.png "Lab02 Fuse Project")
+
+* If needed, change to *Fuse Integration Perspective: Window -> Perspective -> Open Perspective -> Fuse Integration*
+
+![Lab02](https://github.com/vinicius-martinez/fuse7-testdrive/blob/master/images/lab02-fuseintgperspective.png "Lab02 Fuse Integration Perspective")
 
 ## Additional References <a name="demo-additional-references">
