@@ -20,7 +20,7 @@ For additional details, please refer to [Additional References](#testdrive-addit
 
 ### Setup Developer Studio <a name="testdrive-step-0"></a>
 
-* Create an account or LogIn on [Red Hat Developer](https://developers.redhat.com)
+* Create an account or LogIn on [Red Hat Developer](https://developers.redhat.com);
 * Download [Red Hat Developer Studio 12.9 Installer](https://developers.redhat.com/download-manager/file/devstudio-12.9.0.GA-installer-standalone.jar) from [Red Hat Developers](https://developers.redhat.com/products/devstudio/overview/);
 
 ![Dev Studio Download](https://github.com/vinicius-martinez/fuse7-testdrive/blob/master/images/lab0-devstudio-download.png "Red Hat Developer Studio 12.9")
@@ -35,7 +35,7 @@ java -jar devstudio-12.9.0.GA-installer-standalone.jar
 
 ![Fuse Tooling](https://github.com/vinicius-martinez/fuse7-testdrive/blob/master/images/lab0-enablefusetooling.png "Enable Fuse Tooling")
 
-* After finishing the installation process, open **Red Hat Developer Studio**. If everything goes fine, *lab0* is sucessfully finished.
+* After finishing the installation process, open **Red Hat Developer Studio**. If everything goes fine, *lab0* is finished.
 
 ### Configure Maven <a name="testdrive-step-1"></a>
 
@@ -47,7 +47,7 @@ Red Hat GA repository: https://maven.repository.redhat.com/ga
 Red Hat EA repository: https://maven.repository.redhat.com/earlyaccess/all
 ```
 
-* If you prefer, just create a blank *settings.xml* file and place it properly depending on your platform:
+* If you prefer, just create a blank *settings.xml* file and paste the following content within it:
 
   * **Linux or MacOS: ~/.m2/settings.xml**
   * **Windows: Documents and Settings\\<USER_NAME>\\.m2\\settings.xml**
