@@ -197,7 +197,60 @@ Red Hat EA repository: https://maven.repository.redhat.com/earlyaccess/all
     <activeProfile>default</activeProfile>
   </activeProfiles>
 </settings>
+```
 
+* In order to double-check if your *maven* settings are properly configured, try to create a **Red Hat Fuse Application** from command-line:
+
+```
+mvn org.apache.maven.plugins:maven-archetype-plugin:2.4:generate \
+  -DarchetypeCatalog=https://maven.repository.redhat.com/ga/io/fabric8/archetypes/archetypes-catalog/2.2.0.fuse-710017-redhat-00003/archetypes-catalog-2.2.0.fuse-710017-redhat-00003-archetype-catalog.xml \
+  -DarchetypeGroupId=org.jboss.fuse.fis.archetypes \
+  -DarchetypeArtifactId=spring-boot-camel-xml-archetype \
+  -DarchetypeVersion=2.2.0.fuse-710017-redhat-00003
+```
+
+* Inform the required attributes to create your *sample project*. Example:
+
+```
+Define value for property 'groupId': : com.redhat.fuse
+Define value for property 'artifactId': : helloworld
+Define value for property 'version':  1.0-SNAPSHOT: : <PRESS ENTER FOR DEFAULT VALUE>
+Define value for property 'package':  com.redhat.fuse: : <PRESS ENTER FOR DEFAULT VALUE>
+Confirm properties configuration:
+groupId: com.redhat.fuse
+artifactId: helloworld
+version: 1.0-SNAPSHOT
+package: com.redhat.fuse
+ Y: : Y
+```
+
+* Navigate onto *helloworld* project and run *maven clean install*. Example:
+
+```
+cd helloworld
+mvn clean install
+```
+
+* The following output is expected:
+
+```
+[INFO] Scanning for projects...
+[INFO]
+[INFO] ---------------------< com.redhat.fuse:helloworld >---------------------
+[INFO] Building Fabric8 :: Quickstarts :: Spring-Boot :: Camel XML 1.0-SNAPSHOT
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO]
+[INFO] --- maven-clean-plugin:2.5:clean (default-clean) @ helloworld ---
+...
+
+[INFO] Installing /private/tmp/helloworld/target/helloworld-1.0-SNAPSHOT.jar to /Users/vmartine/.m2/repository/com/redhat/fuse/helloworld/1.0-SNAPSHOT/helloworld-1.0-SNAPSHOT.jar
+[INFO] Installing /private/tmp/helloworld/pom.xml to /Users/vmartine/.m2/repository/com/redhat/fuse/helloworld/1.0-SNAPSHOT/helloworld-1.0-SNAPSHOT.pom
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 3.519 s
+[INFO] Finished at: 2018-11-16T17:22:05-02:00
+[INFO] ------------------------------------------------------------------------
 ```
 
 ## Additional References <a name="demo-additional-references">
