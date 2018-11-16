@@ -49,8 +49,8 @@ Red Hat EA repository: https://maven.repository.redhat.com/earlyaccess/all
 
 * If you prefer, just create a blank *settings.xml* file and place it properly depending on your platform:
 
-  * Linux or MacOS: ~/.m2/settings.xml (on Linux or macOS)
-  * Windows: Documents and Settings\<USER_NAME>\.m2\settings.xml
+  * **Linux or MacOS: ~/.m2/settings.xml (on Linux or macOS)**
+  * **Windows: Documents and Settings\<USER_NAME>\.m2\settings.xml**
 
 ```
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
