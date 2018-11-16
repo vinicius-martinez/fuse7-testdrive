@@ -14,7 +14,7 @@ For additional details, please refer to [Additional References](#testdrive-addit
 
 ## Labs:
 
-0. [Setup Developer Studio](#testdrive-step-0)
+0. [Setup Developer Studio 12.9](#testdrive-step-0)
 1. [Configure Maven](#testdrive-step-1)
 2. [Installing AMQ-7.2 Broker](#testdrive-step-1)
 
@@ -22,12 +22,12 @@ For additional details, please refer to [Additional References](#testdrive-addit
 
 * Create an account or LogIn on [Red Hat Developer](https://developers.redhat.com)
 * Download [Red Hat Developer Studio 12.9; Installer](https://developers.redhat.com/download-manager/file/devstudio-12.9.0.GA-installer-standalone.jar) from [Red Hat Developers](https://developers.redhat.com/products/devstudio/overview/);
-![Dev Studio Download](https://github.com/vinicius-martinez//raw/master/src/common/images/icon48.png "Texto")
+![Dev Studio Download](https://github.com/vinicius-martinez/fuse7-testdrive/blob/master/images/lab0-devstudio-download.png "Texto")
 * Install **Red Hat Developer Studio** via *java -jar*. Example:
 
 ```
 java -jar devstudio-12.9.0.GA-installer-standalone.jar
 ```
 
-![Fuse Tooling](https://github.com/vinicius-martinez//raw/master/src/common/images/icon48.png "Texto")
+![Fuse Tooling](https://github.com/vinicius-martinez/fuse7-testdrive/blob/master/images/lab0-enablefusetooling.png "Enable Fuse Tooling")
 ## Additional References <a name="demo-additional-references">
