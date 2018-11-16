@@ -196,6 +196,7 @@ Red Hat EA repository: https://maven.repository.redhat.com/earlyaccess/all
   <activeProfiles>
     <activeProfile>default</activeProfile>
   </activeProfiles>
+  
 </settings>
 ```
 
