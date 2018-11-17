@@ -38,6 +38,8 @@ java -jar devstudio-12.9.0.GA-installer-standalone.jar
 
 * After finishing the installation process, open **Red Hat Developer Studio**. If everything goes fine, *lab0* is finished.
 
+* For additional details regarding the installation process, please refer to [Red Hat Developer Studio Installation](https://access.redhat.com/documentation/en-us/red_hat_developer_studio/12.9/html-single/installation_guide/) and [Installing Red Hat Developer Studio Integration Stack](https://access.redhat.com/documentation/en-us/red_hat_developer_studio_integration_stack/12.0/html-single/installation_guide/) documents.
+
 ### Configure Maven <a name="testdrive-step-1"></a>
 
 * In order to explore **Red Hat Fuse**, you need to properly configure *Apache Maven* settings.xml, therefore the following *repositories* should be enabled:
@@ -255,6 +257,8 @@ mvn clean install
 [INFO] ------------------------------------------------------------------------
 ```
 
+* For additional details regarding *Apache Maven* on **Red Hat Fuse**, please refer to the following document: [Preparing Maven for building Red Hat Fuse](https://access.redhat.com/documentation/en-us/red_hat_fuse/7.1/html-single/getting_started/#Build-GenerateMaven)
+
 ### Create your first Fuse Project and explore Red Hat Developer Studio <a name="testdrive-step-2"></a>
 
 * Open **Red Hat Developer Studio**
@@ -276,7 +280,7 @@ mvn clean install
 
 ![Lab02](https://github.com/vinicius-martinez/fuse7-testdrive/blob/master/images/lab02-importantfiles.png "Lab02 Fuse Import Files")
 
-* If you prefer, click on *Source* tab leave the *Graphical Editor* to review your **Fuse Route**  implementation using *XML*
+* Click on the *Source* tab leave the *Graphical Editor* to review your **Fuse Route**  implementation using *XML*
 
 ![Lab02](https://github.com/vinicius-martinez/fuse7-testdrive/blob/master/images/lab02-routesource.png "Lab02 Fuse Import Files")
 
@@ -364,4 +368,4 @@ mvn clean install
 18:24:36.240 [Camel (MyCamel) thread #3 - timer://foo] INFO  simple-route - >>> Hello World from camel-context.xml
 ```
 
-## Additional References <a name="demo-additional-references">
+## Additional References <a name="testdrive-additional-references">
