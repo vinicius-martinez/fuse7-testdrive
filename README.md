@@ -16,8 +16,8 @@ For additional details, please refer to [Additional References](#testdrive-addit
 
 0. [Setup Developer Studio 12.9](#testdrive-step-0)
 1. [Configure Maven](#testdrive-step-1)
-2. [Create your first Fuse Project](#testdrive-step-2)
-2. [Installing AMQ-7.2 Broker](#testdrive-step-1)
+2. [Create your first Fuse Project and explore Developer Studio](#testdrive-step-2)
+3. [Explore Red Hat Developer Studio](#testdrive-step-3)
 
 ### Setup Developer Studio <a name="testdrive-step-0"></a>
 
@@ -255,7 +255,7 @@ mvn clean install
 [INFO] ------------------------------------------------------------------------
 ```
 
-### Create your first Fuse Project <a name="testdrive-step-2"></a>
+### Create your first Fuse Project and explore Developer Studio <a name="testdrive-step-2"></a>
 
 * Open **Red Hat Developer Studio**
 
@@ -264,12 +264,20 @@ mvn clean install
   * *Project Name: Lab02*
   * *Path: default value*
   * *Use default Workspace location: checked*
-  * *Finish*
+  * *Click on Finish button*
 
 ![Lab02](https://github.com/vinicius-martinez/fuse7-testdrive/blob/master/images/lab02-projectcreation.png "Lab02 Fuse Project")
 
 * If needed, change to *Fuse Integration Perspective: Window -> Perspective -> Open Perspective -> Fuse Integration*
 
 ![Lab02](https://github.com/vinicius-martinez/fuse7-testdrive/blob/master/images/lab02-fuseintgperspective.png "Lab02 Fuse Integration Perspective")
+
+* Click on *Lab02* project in order to expand it and explore all generated files specially: **src/main/resources/spring/camel-context.xml and src/main/java/org/mycompany/Application.java**
+
+![Lab02](https://github.com/vinicius-martinez/fuse7-testdrive/blob/master/images/lab02-importantfiles.png "Lab02 Fuse Import Files")
+
+* If you prefer, click on *Source* tab leave the *Graphical Editor* to review your **Fuse Route**  implementation using *XML*
+
+![Lab02](https://github.com/vinicius-martinez/fuse7-testdrive/blob/master/images/lab02-routesource.png "Lab02 Fuse Import Files")
 
 ## Additional References <a name="demo-additional-references">
