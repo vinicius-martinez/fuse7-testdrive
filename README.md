@@ -444,7 +444,7 @@ mvn clean install
 
 ![Lab02](https://github.com/vinicius-martinez/fuse7-testdrive/blob/master/images/lab02-startracing.png "Lab02 Tracing View")
 
-* Finally go back to *Messages View* and finally click on *Refresh* button from the right corner of this view. Please notice that every message within fuse context will be displayed with additional tracing info.
+* Finally go back to *Messages View* and click on *Refresh* button from the right corner of this view. Please notice that every message within fuse context will be displayed with additional tracing info.
 
  ![Lab02](https://github.com/vinicius-martinez/fuse7-testdrive/blob/master/images/lab02-tracingmessages.png "Lab02 Tracing Messages")
 
