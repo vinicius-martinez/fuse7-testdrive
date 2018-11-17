@@ -16,7 +16,7 @@ For additional details, please refer to [Additional References](#testdrive-addit
 
 0. [Setup Developer Studio 12.9](#testdrive-step-0)
 1. [Configure Maven](#testdrive-step-1)
-2. [Create your first Fuse Project and explore Developer Studio](#testdrive-step-2)
+2. [Create your first Fuse Project and explore Red Hat Developer Studio](#testdrive-step-2)
 3. [Explore Red Hat Developer Studio](#testdrive-step-3)
 
 ### Setup Developer Studio <a name="testdrive-step-0"></a>
@@ -255,7 +255,7 @@ mvn clean install
 [INFO] ------------------------------------------------------------------------
 ```
 
-### Create your first Fuse Project and explore Developer Studio <a name="testdrive-step-2"></a>
+### Create your first Fuse Project and explore Red Hat Developer Studio <a name="testdrive-step-2"></a>
 
 * Open **Red Hat Developer Studio**
 
@@ -272,12 +272,96 @@ mvn clean install
 
 ![Lab02](https://github.com/vinicius-martinez/fuse7-testdrive/blob/master/images/lab02-fuseintgperspective.png "Lab02 Fuse Integration Perspective")
 
-* Click on *Lab02* project in order to expand it and explore all generated files specially: **src/main/resources/spring/camel-context.xml and src/main/java/org/mycompany/Application.java**
+* Click on *Lab02* project in order to expand it and explore all generated files specially: **src/main/resources/spring/camel-context.xml, src/main/java/org/mycompany/Application.java and pom.xml**
 
 ![Lab02](https://github.com/vinicius-martinez/fuse7-testdrive/blob/master/images/lab02-importantfiles.png "Lab02 Fuse Import Files")
 
 * If you prefer, click on *Source* tab leave the *Graphical Editor* to review your **Fuse Route**  implementation using *XML*
 
 ![Lab02](https://github.com/vinicius-martinez/fuse7-testdrive/blob/master/images/lab02-routesource.png "Lab02 Fuse Import Files")
+
+* In order to execute the this route, click on **camel-context.xml** file with the *right mouse button*, select *Run As* and finally *Local Camel context (without tests)*
+
+![Lab02](https://github.com/vinicius-martinez/fuse7-testdrive/blob/master/images/lab02-runas.png.png "Lab02 Fuse Import Files")
+
+* When invoking the *Run As*, the application is going to be built and if everything went fine, a similar output as follows is expected:
+
+```
+[INFO] --- spring-boot-maven-plugin:1.5.4.RELEASE:run (default-cli) @ camel-ose-springboot-xml ---
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::       (v1.5.13.RELEASE)
+
+18:24:27.416 [main] INFO  org.mycompany.Application - Starting Application on skylab with PID 88927 (/Users/vmartine/Documents/REDHAT/SALES/FY19/CLIENTS/SANEPAR/td_fis/workspace/Lab02/target/classes started by vmartine in /Users/vmartine/Documents/REDHAT/SALES/FY19/CLIENTS/SANEPAR/td_fis/workspace/Lab02)
+18:24:27.418 [main] INFO  org.mycompany.Application - No active profile set, falling back to default profiles: default
+18:24:27.462 [main] INFO  o.s.b.c.e.AnnotationConfigEmbeddedWebApplicationContext - Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@874106b: startup date [Sat Nov 17 18:24:27 BRST 2018]; root of context hierarchy
+18:24:27.739 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 5.3.5.Final-redhat-2
+18:24:27.938 [main] INFO  o.s.b.f.xml.XmlBeanDefinitionReader - Loading XML bean definitions from class path resource [spring/camel-context.xml]
+18:24:29.805 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.apache.camel.spring.boot.CamelAutoConfiguration' of type [org.apache.camel.spring.boot.CamelAutoConfiguration$$EnhancerBySpringCGLIB$$60f459f0] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+18:24:30.222 [main] INFO  o.s.b.c.e.t.TomcatEmbeddedServletContainer - Tomcat initialized with port(s): 8080 (http)
+18:24:30.256 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-0.0.0.0-8080"]
+18:24:30.263 [main] INFO  o.a.catalina.core.StandardService - Starting service Tomcat
+18:24:30.263 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet Engine: Apache Tomcat/8.0.36
+18:24:30.356 [localhost-startStop-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+18:24:30.357 [localhost-startStop-1] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 2896 ms
+18:24:30.607 [localhost-startStop-1] INFO  o.s.b.w.s.ServletRegistrationBean - Mapping servlet: 'dispatcherServlet' to [/]
+18:24:30.611 [localhost-startStop-1] INFO  o.s.b.w.s.FilterRegistrationBean - Mapping filter: 'metricsFilter' to: [/*]
+18:24:30.611 [localhost-startStop-1] INFO  o.s.b.w.s.FilterRegistrationBean - Mapping filter: 'characterEncodingFilter' to: [/*]
+18:24:30.611 [localhost-startStop-1] INFO  o.s.b.w.s.FilterRegistrationBean - Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+18:24:30.611 [localhost-startStop-1] INFO  o.s.b.w.s.FilterRegistrationBean - Mapping filter: 'httpPutFormContentFilter' to: [/*]
+18:24:30.611 [localhost-startStop-1] INFO  o.s.b.w.s.FilterRegistrationBean - Mapping filter: 'requestContextFilter' to: [/*]
+18:24:30.611 [localhost-startStop-1] INFO  o.s.b.w.s.FilterRegistrationBean - Mapping filter: 'webRequestLoggingFilter' to: [/*]
+18:24:30.612 [localhost-startStop-1] INFO  o.s.b.w.s.FilterRegistrationBean - Mapping filter: 'applicationContextIdFilter' to: [/*]
+18:24:31.187 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerAdapter - Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@874106b: startup date [Sat Nov 17 18:24:27 BRST 2018]; root of context hierarchy
+18:24:31.303 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+18:24:31.306 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+18:24:31.404 [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping - Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+18:24:31.405 [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping - Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+18:24:31.470 [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping - Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+18:24:31.576 [main] INFO  o.a.c.i.c.DefaultTypeConverter - Type converters loaded (core: 194, classpath: 1)
+18:24:32.652 [main] INFO  o.s.j.e.a.AnnotationMBeanExporter - Registering beans for JMX exposure on startup
+18:24:32.659 [main] INFO  o.s.b.a.e.jmx.EndpointMBeanExporter - Registering beans for JMX exposure on startup
+18:24:32.663 [main] INFO  o.s.b.c.e.AnnotationConfigEmbeddedWebApplicationContext - Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@6a387353: startup date [Sat Nov 17 18:24:32 BRST 2018]; parent: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@874106b
+18:24:32.703 [main] INFO  o.s.b.f.s.DefaultListableBeanFactory - Overriding bean definition for bean 'handlerExceptionResolver' with a different definition: replacing [Root bean: class [null]; scope=; abstract=false; lazyInit=false; autowireMode=3; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=org.springframework.web.servlet.config.annotation.DelegatingWebMvcConfiguration; factoryMethodName=handlerExceptionResolver; initMethodName=null; destroyMethodName=(inferred); defined in org.springframework.web.servlet.config.annotation.DelegatingWebMvcConfiguration] with [Root bean: class [null]; scope=; abstract=false; lazyInit=false; autowireMode=3; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=endpointWebMvcChildContextConfiguration; factoryMethodName=compositeHandlerExceptionResolver; initMethodName=null; destroyMethodName=(inferred); defined in org.springframework.boot.actuate.autoconfigure.EndpointWebMvcChildContextConfiguration]
+18:24:32.762 [main] INFO  o.s.b.c.e.t.TomcatEmbeddedServletContainer - Tomcat initialized with port(s): 8081 (http)
+18:24:32.763 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-0.0.0.0-8081"]
+18:24:32.763 [main] INFO  o.a.catalina.core.StandardService - Starting service Tomcat
+18:24:32.763 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet Engine: Apache Tomcat/8.0.36
+18:24:32.774 [localhost-startStop-1] INFO  o.a.c.c.C.[Tomcat-1].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+18:24:32.774 [localhost-startStop-1] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 111 ms
+18:24:32.778 [localhost-startStop-1] INFO  o.s.b.w.s.ServletRegistrationBean - Mapping servlet: 'dispatcherServlet' to [/]
+18:24:32.836 [main] INFO  o.s.b.a.e.mvc.EndpointHandlerMapping - Mapped "{[/health || /health.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.HealthMvcEndpoint.invoke(javax.servlet.http.HttpServletRequest,java.security.Principal)
+18:24:32.852 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/error]}" onto public java.util.Map<java.lang.String, java.lang.Object> org.springframework.boot.actuate.endpoint.mvc.ManagementErrorEndpoint.invoke()
+18:24:32.860 [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping - Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+18:24:32.860 [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping - Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+18:24:32.873 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerAdapter - Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@6a387353: startup date [Sat Nov 17 18:24:32 BRST 2018]; parent: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@874106b
+18:24:32.917 [main] INFO  o.a.c.spring.boot.RoutesCollector - Loading additional Camel XML routes from: classpath:camel/*.xml
+18:24:32.918 [main] INFO  o.a.c.spring.boot.RoutesCollector - Loading additional Camel XML rests from: classpath:camel-rest/*.xml
+18:24:32.931 [main] INFO  o.a.camel.spring.SpringCamelContext - Apache Camel 2.21.0.fuse-710018-redhat-00001 (CamelContext: MyCamel) is starting
+18:24:32.932 [main] INFO  o.a.c.m.ManagedManagementStrategy - JMX is enabled
+18:24:32.932 [main] INFO  o.a.c.m.DefaultManagementAgent - ManagementAgent detected JVM system properties: {org.apache.camel.jmx.createRmiConnector=true}
+18:24:33.055 [Camel Thread #2 - Camel Thread #1 - JMXConnector: service:jmx:rmi:///jndi/rmi://skylab:1099/jmxrmi/camel] INFO  o.a.c.m.DefaultManagementAgent - JMX Connector thread started and listening at: service:jmx:rmi:///jndi/rmi://skylab:1099/jmxrmi/camel
+18:24:33.205 [main] INFO  o.a.camel.spring.SpringCamelContext - StreamCaching is not in use. If using streams then its recommended to enable stream caching. See more details at http://camel.apache.org/stream-caching.html
+18:24:33.234 [main] INFO  o.a.camel.spring.SpringCamelContext - Route: simple-route started and consuming from: timer://foo?period=1000
+18:24:33.236 [main] INFO  o.a.camel.spring.SpringCamelContext - Total 1 routes, of which 1 are started
+18:24:33.237 [main] INFO  o.a.camel.spring.SpringCamelContext - Apache Camel 2.21.0.fuse-710018-redhat-00001 (CamelContext: MyCamel) started in 0.306 seconds
+18:24:33.238 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-0.0.0.0-8081"]
+18:24:33.253 [main] INFO  o.a.tomcat.util.net.NioSelectorPool - Using a shared selector for servlet write/read
+18:24:33.264 [main] INFO  o.s.b.c.e.t.TomcatEmbeddedServletContainer - Tomcat started on port(s): 8081 (http)
+18:24:33.269 [main] INFO  o.s.c.s.DefaultLifecycleProcessor - Starting beans in phase 0
+18:24:33.277 [main] INFO  o.s.b.a.e.jmx.EndpointMBeanExporter - Located managed bean 'healthEndpoint': registering with JMX server as MBean [org.springframework.boot:type=Endpoint,name=healthEndpoint]
+18:24:33.303 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-0.0.0.0-8080"]
+18:24:33.304 [main] INFO  o.a.tomcat.util.net.NioSelectorPool - Using a shared selector for servlet write/read
+18:24:33.305 [main] INFO  o.s.b.c.e.t.TomcatEmbeddedServletContainer - Tomcat started on port(s): 8080 (http)
+18:24:33.310 [main] INFO  org.mycompany.Application - Started Application in 6.085 seconds (JVM running for 16.658)
+18:24:34.249 [Camel (MyCamel) thread #3 - timer://foo] INFO  simple-route - >>> Hello World from camel-context.xml
+18:24:35.237 [Camel (MyCamel) thread #3 - timer://foo] INFO  simple-route - >>> Hello World from camel-context.xml
+18:24:36.240 [Camel (MyCamel) thread #3 - timer://foo] INFO  simple-route - >>> Hello World from camel-context.xml
+```
 
 ## Additional References <a name="demo-additional-references">
