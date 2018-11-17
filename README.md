@@ -2,7 +2,9 @@
 
 This repository will host a series of labs/demonstrations showcasing a series of features and capabilities provided by **Red Hat Fuse, Spring Boot, Red Hat AMQ and Red Hat Openshift Container Platform.**
 
-For additional details, please refer to [Additional References](#testdrive-additional-references) section.
+The [Additional References](#testdrive-additional-references) section will provide complementary assets for further reading and complementary details about related subjects.
+
+**Contributions/Suggestions/Issues/Forks are always WELCOME**
 
 ## Environment
 
