@@ -4,7 +4,7 @@ This repository will host a series of labs/demonstrations showcasing a series of
 
 The [Additional References](#testdrive-additional-references) section will provide complementary assets for further reading and complementary details about related subjects.
 
-**Contributions/Suggestions/Issues/Forks are always WELCOME**
+**Contributions/Suggestions/Issues/Forks are always WELCOME!!**
 
 ## Environment
 
@@ -274,7 +274,7 @@ mvn clean install
 
 ![Lab02](https://github.com/vinicius-martinez/fuse7-testdrive/blob/master/images/lab02-projectcreation.png "Lab02 Fuse Project")
 
-* If needed, change to *Fuse Integration Perspective: Window -> Perspective -> Open Perspective -> Fuse Integration*
+* Change to **Fuse Integration Perspective:** *Window -> Perspective -> Open Perspective -> Fuse Integration*
 
 ![Lab02](https://github.com/vinicius-martinez/fuse7-testdrive/blob/master/images/lab02-fuseintgperspective.png "Lab02 Fuse Integration Perspective")
 
@@ -284,13 +284,13 @@ mvn clean install
 
 * Click on the *Source* tab leave the *Graphical Editor* to review your **Fuse Route**  implementation using *XML*
 
-![Lab02](https://github.com/vinicius-martinez/fuse7-testdrive/blob/master/images/lab02-routesource.png "Lab02 Fuse Import Files")
+![Lab02](https://github.com/vinicius-martinez/fuse7-testdrive/blob/master/images/lab02-routesource.png "Lab02 Fuse Route Source")
 
 * In order to execute the this route, click on **camel-context.xml** file with the *right mouse button*, select *Run As* and finally *Local Camel context (without tests)*
 
-![Lab02](https://github.com/vinicius-martinez/fuse7-testdrive/blob/master/images/lab02-runas.png "Lab02 Fuse Import Files")
+![Lab02](https://github.com/vinicius-martinez/fuse7-testdrive/blob/master/images/lab02-runas.png "Lab02 Fuse Run As")
 
-* When invoking the *Run As*, the application is going to be built and if everything went fine, a similar output as follows is expected:
+* When invoking *Run As* action, the application is going to be built and if everything went fine, a similar output as follows is expected:
 
 ```
 [INFO] --- spring-boot-maven-plugin:1.5.4.RELEASE:run (default-cli) @ camel-ose-springboot-xml ---
@@ -368,6 +368,60 @@ mvn clean install
 18:24:34.249 [Camel (MyCamel) thread #3 - timer://foo] INFO  simple-route - >>> Hello World from camel-context.xml
 18:24:35.237 [Camel (MyCamel) thread #3 - timer://foo] INFO  simple-route - >>> Hello World from camel-context.xml
 18:24:36.240 [Camel (MyCamel) thread #3 - timer://foo] INFO  simple-route - >>> Hello World from camel-context.xml
+```
+
+* Stop the execution of this **Fuse Route** by clicking on the *Red Button* next to the *Console* tab
+
+![Lab02](https://github.com/vinicius-martinez/fuse7-testdrive/blob/master/images/lab02-stoproute.png "Lab02 Stop Fuse Route")
+
+* Enable *Properties* tab by clicking on: *Window -> Show View -> Properties*
+
+![Lab02](https://github.com/vinicius-martinez/fuse7-testdrive/blob/master/images/lab02-propertiestab.png "Lab02 Properties")
+
+* Click on the *Green Box* with the **Timer Component** and take a closer on the *Properties tab*. Try to review and familiarize yourself with the following components:
+
+  * *Details*
+  * *Advanced*
+  * *Documentation*
+
+![Lab02](https://github.com/vinicius-martinez/fuse7-testdrive/blob/master/images/lab02-propertiestab.png "Lab02 Properties Details")
+
+* Click on the *Orange Box* with the **Set Body** component and review both *Details* and *Documentation* from *Properties* tab
+
+* Go back to *Details* and change the **Expression** from **Hello World from camel-context.xml** to **Hello World Fuse Test Drive**
+
+![Lab02](https://github.com/vinicius-martinez/fuse7-testdrive/blob/master/images/lab02-helloworldfusetd.png "Lab02 HelloWorld")
+
+* Save the Project: *File -> Save*
+
+![Lab02](https://github.com/vinicius-martinez/fuse7-testdrive/blob/master/images/lab02-saveproject.png "Lab02 SaveProject")
+
+* Try to execute this **Fuse Route** and confirm if the updated *Hello World* message is in place
+
+```
+19:36:26.444 [main] INFO  o.s.c.s.DefaultLifecycleProcessor - Starting beans in phase 0
+19:36:26.453 [main] INFO  o.s.b.a.e.jmx.EndpointMBeanExporter - Located managed bean 'healthEndpoint': registering with JMX server as MBean [org.springframework.boot:type=Endpoint,name=healthEndpoint]
+19:36:26.477 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-0.0.0.0-8080"]
+19:36:26.477 [main] INFO  o.a.tomcat.util.net.NioSelectorPool - Using a shared selector for servlet write/read
+19:36:26.478 [main] INFO  o.s.b.c.e.t.TomcatEmbeddedServletContainer - Tomcat started on port(s): 8080 (http)
+19:36:26.482 [main] INFO  org.mycompany.Application - Started Application in 5.572 seconds (JVM running for 15.167)
+19:36:27.419 [Camel (MyCamel) thread #3 - timer://foo] INFO  simple-route - >>> Hello World Fuse Test Drive
+19:36:28.407 [Camel (MyCamel) thread #3 - timer://foo] INFO  simple-route - >>> Hello World Fuse Test Drive
+19:36:29.408 [Camel (MyCamel) thread #3 - timer://foo] INFO  simple-route - >>> Hello World Fuse Test Drive
+19:36:30.411 [Camel (MyCamel) thread #3 - timer://foo] INFO  simple-route - >>> Hello World Fuse Test Drive
+19:36:31.414 [Camel (MyCamel) thread #3 - timer://foo] INFO  simple-route - >>> Hello World Fuse Test Drive
+19:36:32.416 [Camel (MyCamel) thread #3 - timer://foo] INFO  simple-route - >>> Hello World Fuse Test Drive
+19:36:33.421 [Camel (MyCamel) thread #3 - timer://foo] INFO  simple-route - >>> Hello World Fuse Test Drive
+19:36:34.421 [Camel (MyCamel) thread #3 - timer://foo] INFO  simple-route - >>> Hello World Fuse Test Drive
+19:36:35.424 [Camel (MyCamel) thread #3 - timer://foo] INFO  simple-route - >>> Hello World Fuse Test Drive
+19:36:36.427 [Camel (MyCamel) thread #3 - timer://foo] INFO  simple-route - >>> Hello World Fuse Test Drive
+19:36:37.429 [Camel (MyCamel) thread #3 - timer://foo] INFO  simple-route - >>> Hello World Fuse Test Drive
+19:36:38.432 [Camel (MyCamel) thread #3 - timer://foo] INFO  simple-route - >>> Hello World Fuse Test Drive
+19:36:39.435 [Camel (MyCamel) thread #3 - timer://foo] INFO  simple-route - >>> Hello World Fuse Test Drive
+19:36:40.438 [Camel (MyCamel) thread #3 - timer://foo] INFO  simple-route - >>> Hello World Fuse Test Drive
+19:36:41.440 [Camel (MyCamel) thread #3 - timer://foo] INFO  simple-route - >>> Hello World Fuse Test Drive
+19:36:42.443 [Camel (MyCamel) thread #3 - timer://foo] INFO  simple-route - >>> Hello World Fuse Test Drive
+19:36:43.446 [Camel (MyCamel) thread #3 - timer://foo] INFO  simple-route - >>> Hello World Fuse Test Drive
 ```
 
 ## Additional References <a name="testdrive-additional-references">
