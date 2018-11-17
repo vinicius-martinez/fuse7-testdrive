@@ -384,7 +384,7 @@ mvn clean install
   * *Advanced*
   * *Documentation*
 
-![Lab02](https://github.com/vinicius-martinez/fuse7-testdrive/blob/master/images/lab02-propertiestab.png "Lab02 Properties Details")
+![Lab02](https://github.com/vinicius-martinez/fuse7-testdrive/blob/master/images/llab02-propertiesdetails.png "Lab02 Properties Details")
 
 * Click on the *Orange Box* with the **Set Body** component and review both *Details* and *Documentation* from *Properties* tab
 
