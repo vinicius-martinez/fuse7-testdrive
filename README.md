@@ -282,7 +282,7 @@ mvn clean install
 
 * In order to execute the this route, click on **camel-context.xml** file with the *right mouse button*, select *Run As* and finally *Local Camel context (without tests)*
 
-![Lab02](https://github.com/vinicius-martinez/fuse7-testdrive/blob/master/images/lab02-runas.png.png "Lab02 Fuse Import Files")
+![Lab02](https://github.com/vinicius-martinez/fuse7-testdrive/blob/master/images/lab02-runas.png "Lab02 Fuse Import Files")
 
 * When invoking the *Run As*, the application is going to be built and if everything went fine, a similar output as follows is expected:
 
