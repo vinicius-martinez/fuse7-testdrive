@@ -424,4 +424,28 @@ mvn clean install
 19:36:43.446 [Camel (MyCamel) thread #3 - timer://foo] INFO  simple-route - >>> Hello World Fuse Test Drive
 ```
 
+* With a running instance of your **Fuse Route** open *JMX Navigator* View: *Window -> Show View -> Others -> JMX Navigator*
+
+![Lab02](https://github.com/vinicius-martinez/fuse7-testdrive/blob/master/images/lab02-jmxnavigator.png "Lab02 JMX Navigator")
+
+* Expand the **Local Processes** tab from *JMX Navigator* and select the *Maven* one. Click with the *right mouse button* on it, and select *Connect*
+
+![Lab02](https://github.com/vinicius-martinez/fuse7-testdrive/blob/master/images/lab02-jmxconnect.png "Lab02 JMX Connect")
+
+* Expand all sub-items from this process, and navigate to *Routes -> simple-route*. Click on *Properties* tab and spend some time reviewing *Properties, Processors and Profile* section
+
+![Lab02](https://github.com/vinicius-martinez/fuse7-testdrive/blob/master/images/lab02-jmxproperties.png "Lab02 JMX Properties")
+
+* Open *Messages View:* *Window -> Show View -> Others -> Messages View*
+
+![Lab02](https://github.com/vinicius-martinez/fuse7-testdrive/blob/master/images/lab02-messagesview.png "Lab02 Messages View")
+
+* Switch back to *JMX Navigator* view, click on **simple-route** with the *right mouse button* and select: *Start Tracing*
+
+![Lab02](https://github.com/vinicius-martinez/fuse7-testdrive/blob/master/images/lab02-startracing.png "Lab02 Tracing View")
+
+* Finally go back to *Messages View* and finally click on *Refresh* button from the right corner of this view. Please notice that every message within fuse context will be displayed with additional tracing info.
+
+ ![Lab02](https://github.com/vinicius-martinez/fuse7-testdrive/blob/master/images/lab02-tracingmessages.png "Lab02 Tracing Messages")
+
 ## Additional References <a name="testdrive-additional-references">
