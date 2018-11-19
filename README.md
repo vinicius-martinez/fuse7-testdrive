@@ -463,7 +463,7 @@ mvn clean install
 
 * Change to **Fuse Integration Perspective:** *Window -> Perspective -> Open Perspective -> Fuse Integration*
 
-![Lab03](https://github.com/vinicius-martinez/fuse7-testdrive/blob/master/images/lab02-fuseintgperspective.png "Lab03 Fuse Integration Perspective")
+![Lab03](https://github.com/vinicius-martinez/fuse7-testdrive/blob/master/images/lab03-fuseintgperspective.png "Lab03 Fuse Integration Perspective")
 
 * Expand *Lab03* project and click on the *Green Box* with **Timer Component**. Notice that a new *action box* pops up. Click on the **Trash Bin** icon to remove this component from this **Fuse Route** and confirm the action.
 
