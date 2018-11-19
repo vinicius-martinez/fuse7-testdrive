@@ -19,7 +19,7 @@ The [Additional References](#testdrive-additional-references) section will provi
 0. [Setup Developer Studio 12.9](#testdrive-step-0)
 1. [Configure Maven](#testdrive-step-1)
 2. [Create your first Fuse Project and explore Red Hat Developer Studio](#testdrive-step-2)
-3. [Explore Red Hat Developer Studio](#testdrive-step-3)
+3. [Simple File Manipulation](#testdrive-step-3)
 
 ### Setup Developer Studio <a name="testdrive-step-0"></a>
 
@@ -447,5 +447,143 @@ mvn clean install
 * Finally go back to *Messages View* and click on *Refresh* button from the right corner of this view. Please notice that every message within fuse context will be displayed with additional tracing info.
 
  ![Lab02](https://github.com/vinicius-martinez/fuse7-testdrive/blob/master/images/lab02-tracingmessages.png "Lab02 Tracing Messages")
+
+### Setup Developer Studio <a name="testdrive-step-3"></a>
+
+* Open **Red Hat Developer Studio**
+
+* Click on: *File -> New -> Fuse Integration Project*
+
+  * *Project Name: Lab03*
+  * *Path: default value*
+  * *Use default Workspace location: checked*
+  * *Click on Finish button*
+
+![Lab03](https://github.com/vinicius-martinez/fuse7-testdrive/blob/master/images/lab03-projectcreation.png "Lab03 Fuse Project")
+
+* Change to **Fuse Integration Perspective:** *Window -> Perspective -> Open Perspective -> Fuse Integration*
+
+![Lab03](https://github.com/vinicius-martinez/fuse7-testdrive/blob/master/images/lab02-fuseintgperspective.png "Lab03 Fuse Integration Perspective")
+
+* Expand *Lab03* project and click on the *Green Box* with **Timer Component**. Notice that a new *action box* pops up. Click on the **Trash Bin** icon to remove this component from this **Fuse Route** and confirm the action.
+
+![Lab03](https://github.com/vinicius-martinez/fuse7-testdrive/blob/master/images/lab03-removecomponent.png "Lab03 Fuse Integration Perspective")
+
+* Repeat this process for the two remaining components from this **Fuse Route**:
+
+  * **Set Body**
+  * **Log**
+
+![Lab03](https://github.com/vinicius-martinez/fuse7-testdrive/blob/master/images/lab03-cleanfuseroute.png "Lab03 Clean Fuse Route")
+
+* If you prefer, go to the *Source* tab and remove the lines between **<route></route>** and the graphical editor will reflect this action. Your **Fuse Route** should look like this:
+
+```
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd        http://camel.apache.org/schema/spring       http://camel.apache.org/schema/spring/camel-spring.xsd">
+    <camelContext id="camel" xmlns="http://camel.apache.org/schema/spring">
+        <route id="simple-route">
+        </route>
+    </camelContext>
+</beans>
+```
+
+* Switch back to the *Graphical Editor* and select the **File** component from the *Components* menu. Drag it into your **Fuse Route**.
+
+  * you can user the *Search* to speed up the process but consider navigating thru the whole *Components* list to familiarize yourself with this menu
+
+![Lab03](https://github.com/vinicius-martinez/fuse7-testdrive/blob/master/images/lab03-file.png "Lab03 File Component")
+
+* Include a **Log** component from the *Components* menu. When dropping this component onto this **Fuse Route**, try to drop it into the **File** *component*. You should end up with something like as follows:
+
+![Lab03](https://github.com/vinicius-martinez/fuse7-testdrive/blob/master/images/lab03-filelog.png "Lab03 File Component")
+
+* If both *components* **File** and **Log** are not connected, you can remove the last one and repeat the process until you bind them. As an alternative, just click on the **File** *component*, select the *arrow* and drag it to the **Log** one.
+
+![Lab03](https://github.com/vinicius-martinez/fuse7-testdrive/blob/master/images/lab03-fileloglink.png "Lab03 File Log Link")
+
+* Now let's include a destination folder. Select the **File** component from the *Components* menu, Drag it into your **Fuse Route** and link it to the **Log** *component*.
+
+  * *use the method which you find more suitable for your needs*
+
+![Lab03](https://github.com/vinicius-martinez/fuse7-testdrive/blob/master/images/lab03-filelogfile.png "Lab03 Destination Folder")
+
+* You're going to notice that this project has an error. Don't worry about this now, we're about to fix it.
+
+![Lab03](https://github.com/vinicius-martinez/fuse7-testdrive/blob/master/images/lab03-projecterror.png "Lab03 Expected Error")
+
+* Click on the first **File (Green Box)** *component* and update it's properties:
+
+  * *Advanced: Path = Source*
+  * *Advanced: Consumer : Delete = Checked*
+
+![Lab03](https://github.com/vinicius-martinez/fuse7-testdrive/blob/master/images/lab03-pathsource.png "Lab03 Source Folder")
+
+![Lab03](https://github.com/vinicius-martinez/fuse7-testdrive/blob/master/images/lab03-consumerdelete.png "Lab03 Source Delete")
+
+* Click on the **Log (Orange Box)** *component* and update the following property:
+
+  * *Details: Message = FileName: ${in.header.CamelFileName} Content: ${body}*
+
+![Lab03](https://github.com/vinicius-martinez/fuse7-testdrive/blob/master/images/lab03-filedetails.png "Lab03 File Info")
+
+* Click on the second **File (Purple Box)** *component* and update it's properties:
+
+  * *Advanced: Path = Destination*
+  * *Advanced: Common : File Name = ${date:now:yyyyMMddhhmmss}.txt*
+
+![Lab03](https://github.com/vinicius-martinez/fuse7-testdrive/blob/master/images/lab03-destination.png "Lab03 Source Folder")
+
+![Lab03](https://github.com/vinicius-martinez/fuse7-testdrive/blob/master/images/lab03-datetime.png "Lab03 Source Delete")
+
+* Try to execute this **Fuse Route** by clicking on *camel-context.xml* with the *right mouse button* and selecting: *Run As -> Local Camel Context (without tests)*
+
+![Lab03](https://github.com/vinicius-martinez/fuse7-testdrive/blob/master/images/lab03-run.png "Lab03 Execute Route")
+
+* A similar output is expected:
+
+```
+23:14:48.498 [main] INFO  o.s.b.c.e.t.TomcatEmbeddedServletContainer - Tomcat started on port(s): 8081 (http)
+23:14:48.504 [main] INFO  o.s.c.s.DefaultLifecycleProcessor - Starting beans in phase 0
+23:14:48.512 [main] INFO  o.s.b.a.e.jmx.EndpointMBeanExporter - Located managed bean 'healthEndpoint': registering with JMX server as MBean [org.springframework.boot:type=Endpoint,name=healthEndpoint]
+23:14:48.541 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-0.0.0.0-8080"]
+23:14:48.542 [main] INFO  o.a.tomcat.util.net.NioSelectorPool - Using a shared selector for servlet write/read
+23:14:48.543 [main] INFO  o.s.b.c.e.t.TomcatEmbeddedServletContainer - Tomcat started on port(s): 8080 (http)
+23:14:48.547 [main] INFO  org.mycompany.Application - Started Application in 6.139 seconds (JVM running for 15.271)
+```
+
+* Click on *Lab03* project with the *right mouse button* and select *Refresh*. Please notice that you have a new folder within this project called **Source**
+
+![Lab03](https://github.com/vinicius-martinez/fuse7-testdrive/blob/master/images/lab03-projectrefresh.png "Lab03 Project Refresh")
+
+* Open you favorite *Text Editor* and create a new file with the following Content:
+
+```
+This is Message1.txt
+```
+
+* *Copy and Paste* this file into **Source** folder. Example:
+
+```
+vmartine at skylab in /tmp
+$ echo "This is Message1.txt" > Message1.txt
+
+vmartine at skylab in /tmp
+$ cat Message1.txt
+This is Message1.txt
+
+cp Message1.txt /Users/vmartine/workspace/Lab03/Source
+```
+
+* Switch back to the *Console* tab and the following message should be displayed:
+
+```
+23:32:02.363 [Camel (MyCamel) thread #3 - file://Source] INFO  _route1 - FileName: Message1.txt Content: This is Message1.txt
+```
+
+* Once again, click on *Lab03* project with the *right mouse button* and select *Refresh*. Notice that you have a new folder named **Destination** and it contains one file.
+
+![Lab03](https://github.com/vinicius-martinez/fuse7-testdrive/blob/master/images/lab03-filetransfer.png "Lab03 File Transfer")
 
 ## Additional References <a name="testdrive-additional-references">
