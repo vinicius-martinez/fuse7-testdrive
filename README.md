@@ -493,6 +493,8 @@ mvn clean install
 
   * you can user the *Search* to speed up the process but consider navigating thru the whole *Components* list to familiarize yourself with this menu
 
+  * spend some time reviewing the *Documentation* from the official reference from the **IDE**
+
 ![Lab03](https://github.com/vinicius-martinez/fuse7-testdrive/blob/master/images/lab03-file.png "Lab03 File Component")
 
 * Include a **Log** component from the *Components* menu. When dropping this component onto this **Fuse Route**, try to drop it into the **File** *component*. You should end up with something like as follows:
@@ -525,6 +527,7 @@ mvn clean install
 * Click on the **Log (Orange Box)** *component* and update the following property:
 
   * *Details: Message = FileName: ${in.header.CamelFileName} Content: ${body}*
+  * *Consider reviewing additional informations regarding this component's headers* [File Component](http://camel.apache.org/file2.html)
 
 ![Lab03](https://github.com/vinicius-martinez/fuse7-testdrive/blob/master/images/lab03-filedetails.png "Lab03 File Info")
 
@@ -532,6 +535,7 @@ mvn clean install
 
   * *Advanced: Path = Destination*
   * *Advanced: Common : File Name = ${date:now:yyyyMMddhhmmss}.txt*
+  * *Consider reviewing additional informations regarding this component's date manipulation* [Simple Expression Language](http://camel.apache.org/simple.html)
 
 ![Lab03](https://github.com/vinicius-martinez/fuse7-testdrive/blob/master/images/lab03-destination.png "Lab03 Source Folder")
 
