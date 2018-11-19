@@ -21,7 +21,7 @@ The [Additional References](#testdrive-additional-references) section will provi
 2. [Create your first Fuse Project and explore Red Hat Developer Studio](#testdrive-step-2)
 3. [Simple File Manipulation](#testdrive-step-3)
 4. [Simple Custom Bean](#testdrive-step-4)
-5. [Simple Marshall/Unmarshal](#testdrive-step-5)
+5. [Simple Unmarshal](#testdrive-step-5)
 6. [Simple Data Transformation](#testdrive-step-6)
 7. [Simple SOAP WebService](#testdrive-step-7)
 8. [Simple Rest WebService](#testdrive-step-7)
@@ -665,6 +665,8 @@ public class MyBean {
 
   * *Details: Type = java.lang.String*
 
+  * try to review [ConvertBody Documentation](http://camel.apache.org/convertbodyto.html) for additional details about this component;
+
 ![Lab04](https://github.com/vinicius-martinez/fuse7-testdrive/blob/master/images/lab04-convertbodyprop.png "Lab04 Convert Body Properties")
 
 * Select the **Bean** component from the *Components* menu and drop it on the *black arrow* between **Log** and **File** *Components*.
@@ -673,6 +675,8 @@ public class MyBean {
 
   * *Details: Method = upperCase*
   * *Details: Ref = myBean*
+
+  * try to review [Bean Documentation](http://camel.apache.org/bean.html) for additional details about this component;
 
 ![Lab04](https://github.com/vinicius-martinez/fuse7-testdrive/blob/master/images/lab04-bean.png "Lab04 Bean Properties")
 
@@ -731,6 +735,262 @@ Current MessageBody content AFTER Transformation: THIS IS MY LOWER-CASE MESSAGE
 ![Lab04](https://github.com/vinicius-martinez/fuse7-testdrive/blob/master/images/lab04-filetransfer.png "Lab04 File Transfer")
 
 ### Simple Marshall/Unmarshal <a name="testdrive-step-5"></a>
+
+* Open **Red Hat Developer Studio**
+
+* Click on: *File -> New -> Fuse Integration Project*
+
+  * *Project Name: Lab05*
+  * *Path: default value*
+  * *Use default Workspace location: checked*
+  * *Click on Finish button*
+
+![Lab05](https://github.com/vinicius-martinez/fuse7-testdrive/blob/master/images/lab05-projectcreation.png "Lab05Fuse Project")
+
+* Change to **Fuse Integration Perspective:** *Window -> Perspective -> Open Perspective -> Fuse Integration*
+
+![Lab05](https://github.com/vinicius-martinez/fuse7-testdrive/blob/master/images/lab05-fuseintgperspective.png "Lab05 Fuse Integration Perspective")
+
+* Expand *Lab05* project and locate the **camel-context.xml** file. Click on it with the *mouse right button* and **DELETE IT**
+
+![Lab05](https://github.com/vinicius-martinez/fuse7-testdrive/blob/master/images/lab05-removecamel.png "Lab05 Remove Camel XML")
+
+* Expand *Lab04* project and *COPY (CTRL + C)* **camel-context.xml** file. Paste it into the following directory on *Lab05* project:
+
+  * *Lab04/src/main/resources/spring*
+
+* Delete the **ConvertBody** *component* from this **Fuse Route**
+
+![Lab05](https://github.com/vinicius-martinez/fuse7-testdrive/blob/master/images/lab05-removeconvertbody.png "Lab05 Convert Body Component")
+
+* Repeat this process for the following *components*:
+
+  * **Unmarshal**
+  * **Bean**
+  * **File**
+
+* Remove **MyBean** class from this *Lab* and also from **Route Source (camel-context.xml )**
+
+![Lab05](https://github.com/vinicius-martinez/fuse7-testdrive/blob/master/images/lab05-removemybean.png "Lab05 Remove MyBean")
+
+* Your **Fuse Route** should like as follows:
+
+![Lab05](https://github.com/vinicius-martinez/fuse7-testdrive/blob/master/images/lab05-setup.png "Lab05 Setup")
+
+* If you prefer, you can edit the **Route's Source Code** removing these *components*. You should end up with the following implementation:
+
+```
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd        http://camel.apache.org/schema/spring       http://camel.apache.org/schema/spring/camel-spring.xsd">
+    <bean class="com.redhat.fis.td.bean.MyBean" id="myBean"/>
+    <camelContext id="camel" xmlns="http://camel.apache.org/schema/spring">
+        <route id="_route1">
+            <from id="_from1" uri="file:Source?delete=true"/>
+            <log id="_log1" message="FileName: ${in.header.CamelFileName} Content: ${body}"/>
+        </route>
+    </camelContext>
+</beans>
+```
+
+* Click with the *mouse right button* on *src/main/java* directory from *Lab05* and select:
+
+  * *New -> Class*
+
+![Lab05](https://github.com/vinicius-martinez/fuse7-testdrive/blob/master/images/lab05-newclass.png "Lab05 Create New Class")
+
+* When prompted, create a new *Java Class* with the following data and afterwards click on *Finish*:
+
+  * *Package = com.redhat.fis.td.customer*
+  * *Name = Customer*
+
+![Lab05](https://github.com/vinicius-martinez/fuse7-testdrive/blob/master/images/lab05-customer.png "Lab05 Create Customer Class")
+
+* Your **Customer Class** should have the following implementation:
+
+```
+package com.redhat.fis.td.customer;
+
+import org.apache.camel.dataformat.bindy.annotation.CsvRecord;
+import org.apache.camel.dataformat.bindy.annotation.DataField;
+
+@CsvRecord(separator = ",")
+public class Customer {
+
+	@DataField(pos = 1)
+	private long customerId;
+	@DataField(pos = 2)
+	private String firstName;
+	@DataField(pos = 3)
+	private String lastName;
+
+	@Override
+	public String toString() {
+		return "Customer [customerId=" + customerId + ", firstName=" + firstName + ", lastName=" + lastName + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (int) (customerId ^ (customerId >>> 32));
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Customer other = (Customer) obj;
+		if (customerId != other.customerId)
+			return false;
+		return true;
+	}
+
+	public long getCustomerId() {
+		return customerId;
+	}
+	public void setCustomerId(long customerId) {
+		this.customerId = customerId;
+	}
+	public String getFirstName() {
+		return firstName;
+	}
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+	public String getLastName() {
+		return lastName;
+	}
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+}
+```
+
+* Include **camel-bindy** *component* on *Lab05* **pom.xml**:
+
+```
+<dependencies>
+  ...
+  <dependency>
+    <groupId>org.apache.camel</groupId>
+    <artifactId>camel-bindy</artifactId>
+  </dependency>
+</dependencies>
+```
+
+* Switch back to the *Graphical Editor* and include a **Split Component** after the **Log** one:
+
+![Lab05](https://github.com/vinicius-martinez/fuse7-testdrive/blob/master/images/lab05-splitcomp.png "Lab05 Include Split Component")
+
+* Edit **Split** *component* properties with the following values:
+
+  * *Details: Expression = tokenize*
+  * *Details: Expression = \n*
+  * *Details: Streaming = checked*
+
+![Lab05](https://github.com/vinicius-martinez/fuse7-testdrive/blob/master/images/lab05-splitcompdetails.png "Lab05 Split Component Details")
+
+* Include an **Unmarshal** *component* right after **Split**
+
+![Lab05](https://github.com/vinicius-martinez/fuse7-testdrive/blob/master/images/lab05-unmarshal.png "Lab05 Include Unmarshal Component")
+
+* Edit **Unmarshal** *component* properties with the following values:
+
+  * *Details: Data Format Type = bindy*
+  * *Details: Type = Csv
+  * *Details: Class Type = com.redhat.fis.td.customer.Customer*
+
+![Lab05](https://github.com/vinicius-martinez/fuse7-testdrive/blob/master/images/lab05-unmarshalconf.png "Lab05 Unmarshal Config")
+
+* Include a **Log** *component* right after **Unmarshal**
+
+![Lab05](https://github.com/vinicius-martinez/fuse7-testdrive/blob/master/images/lab05-unmarshal.png "Lab05 Include Log Component")
+
+* Edit **Log** *component* properties with the following values:
+
+  * *Details: Message = Reading File Line >> ${body}*
+
+![Lab05](https://github.com/vinicius-martinez/fuse7-testdrive/blob/master/images/lab05-logdetails.png "Lab05 Log Details")
+
+* Open you favorite *Text Editor* and create a new file with the following Content:
+
+```
+1,Kobe,Bryant
+2,Michael,Jordan
+3,Vinicius,Martinez
+```
+
+* *Copy and Paste* this file into **Source** folder. Example:
+
+```
+$ cat Message1.txt
+1,Kobe,Bryant
+2,Michael,Jordan
+3,Vinicius,Martinez
+
+cp Message1.txt /Users/vmartine/workspace/Lab05/Source
+```
+
+* Switch back to the *Console* tab and the following message should be displayed:
+
+```
+18:03:45.367 [Camel (MyCamel) thread #3 - file://Source] INFO  _route1 - FileName: sample.txt Content: 1,Kobe,Bryant
+2,Michael,Jordan
+3,Vinicius,Martinez
+
+18:03:45.368 [Camel (MyCamel) thread #3 - file://Source] INFO  _route1 - Reading File Line >> Customer [customerId=1, firstName=Kobe, lastName=Bryant]
+18:03:45.369 [Camel (MyCamel) thread #3 - file://Source] INFO  _route1 - Reading File Line >> Customer [customerId=2, firstName=Michael, lastName=Jordan]
+18:03:45.370 [Camel (MyCamel) thread #3 - file://Source] INFO  _route1 - Reading File Line >> Customer [customerId=3, firstName=Vinicius, lastName=Martinez]
+```
+
+* Stop the **Fuse Route** by clicking on **Red Button** on *Console* tab.
+
+![Lab05](https://github.com/vinicius-martinez/fuse7-testdrive/blob/master/images/lab05-stopfuseroute.png "Lab05 Stop Fuse Route")
+
+* Create a new class **com.redhat.fis.td.customer.CustomerBean** with the following content:
+
+```
+package com.redhat.fis.td.customer;
+
+import org.apache.camel.Exchange;
+
+public class CustomerBean {
+
+	public void printClass(Exchange exchange) {
+		Customer customer = (Customer)exchange.getIn().getBody();
+		System.out.println("Customer ID: " + customer.getCustomerId());
+		System.out.println("Customer First Name: " + customer.getFirstName());
+		System.out.println("Customer Last Name: " + customer.getLastName());
+	}
+}
+```
+
+* Switch back to the *Graphical Editor* and include a **ConvertBody** *component* with the following attributes:
+
+  * *Details: Type = com.redhat.fis.td.customer.Customer*
+
+![Lab05](https://github.com/vinicius-martinez/fuse7-testdrive/blob/master/images/lab05-convertbody.png "Lab05 Convert Body Config")
+
+* Finnally include a **Bean** *component* right after the **ConvertBody** one
+
+![Lab05](https://github.com/vinicius-martinez/fuse7-testdrive/blob/master/images/lab05-includebean.png "Lab05 Body Config")
+
+* Edit **Bean** *component* updating the following attributes:
+
+  * *Details: Ref = com.redhat.fis.td.customer.CustomerBean*
+  * *Details: Method = printClass*
+
+![Lab05](https://github.com/vinicius-martinez/fuse7-testdrive/blob/master/images/lab05-beanconf.png "Lab05 Bean Config")
+
+
+
+
 
 ### Simple Custom Bean <a name="testdrive-step-6"></a>
 
