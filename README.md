@@ -21,14 +21,9 @@ The [Additional References](#testdrive-additional-references) section will provi
 2. [Create your first Fuse Project and explore Red Hat Developer Studio](#testdrive-step-2)
 3. [Simple File Manipulation](#testdrive-step-3)
 4. [Simple Custom Bean](#testdrive-step-4)
-5. [Simple Unmarshal](#testdrive-step-5)
-6. [Simple Data Transformation](#testdrive-step-6)
-7. [Simple SOAP WebService](#testdrive-step-7)
-8. [Simple Rest WebService](#testdrive-step-7)
-
-https://developers.redhat.com/blog/2017/01/11/automate-integration-cicd-process/
-https://developers.redhat.com/blog/2018/07/24/migrate-soap-to-rest-with-camel/
-https://developers.redhat.com/blog/2018/07/12/contract-first-api-design-with-apicurio-and-red-hat-fuse/
+5. [Simple Unmarshal/Marshal](#testdrive-step-5)
+6. [SoapToRest](https://developers.redhat.com/blog/2018/07/24/migrate-soap-to-rest-with-camel/)
+7. [API First](https://developers.redhat.com/blog/2018/07/12/contract-first-api-design-with-apicurio-and-red-hat-fuse/)
 
 ### Setup Developer Studio <a name="testdrive-step-0"></a>
 
@@ -734,7 +729,7 @@ Current MessageBody content AFTER Transformation: THIS IS MY LOWER-CASE MESSAGE
 
 ![Lab04](https://github.com/vinicius-martinez/fuse7-testdrive/blob/master/images/lab04-filetransfer.png "Lab04 File Transfer")
 
-### Simple Marshall/Unmarshal <a name="testdrive-step-5"></a>
+### Simple Unmarshal/Marshal <a name="testdrive-step-5"></a>
 
 * Open **Red Hat Developer Studio**
 
@@ -1012,11 +1007,6 @@ public class CustomerBean {
         </route>
     </camelContext>
 </beans>
-
 ```
-
-
-
-### Simple Custom Bean <a name="testdrive-step-6"></a>
 
 ## Additional References <a name="testdrive-additional-references">
