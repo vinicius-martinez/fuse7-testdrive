@@ -977,18 +977,43 @@ public class CustomerBean {
 
 ![Lab05](https://github.com/vinicius-martinez/fuse7-testdrive/blob/master/images/lab05-convertbody.png "Lab05 Convert Body Config")
 
-* Finnally include a **Bean** *component* right after the **ConvertBody** one
+* Include a **Bean** *component* right after the **ConvertBody** one
 
 ![Lab05](https://github.com/vinicius-martinez/fuse7-testdrive/blob/master/images/lab05-includebean.png "Lab05 Body Config")
 
 * Edit **Bean** *component* updating the following attributes:
 
-  * *Details: Ref = com.redhat.fis.td.customer.CustomerBean*
+  * *Details: Ref = customerBean*
   * *Details: Method = printClass*
 
 ![Lab05](https://github.com/vinicius-martinez/fuse7-testdrive/blob/master/images/lab05-beanconf.png "Lab05 Bean Config")
 
+* Finnally include this *bean* reference on **camel-context.xml**
 
+```
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd        http://camel.apache.org/schema/spring       http://camel.apache.org/schema/spring/camel-spring.xsd">
+    <bean class="com.redhat.fis.td.customer.CustomerBean" id="customerBean"/>
+    <camelContext id="camel" xmlns="http://camel.apache.org/schema/spring">
+        <route id="_route1">
+            <from id="_from1" uri="file:Source?delete=true"/>
+            <log id="_log1" message="FileName: ${in.header.CamelFileName} Content: ${body}"/>
+            <split id="_split1" streaming="true">
+                <tokenize token="\n"/>
+                <unmarshal id="_unmarshal1">
+                    <bindy
+                        classType="com.redhat.fis.td.customer.Customer" type="Csv"/>
+                </unmarshal>
+                <log id="_log2" message="Reading File Line >> ${body}"/>
+                <convertBodyTo id="_convertBodyTo1" type="com.redhat.fis.td.customer.Customer"/>
+                <bean id="_bean1" method="printClass" ref="customerBean"/>
+            </split>
+        </route>
+    </camelContext>
+</beans>
+
+```
 
 
 
