@@ -20,6 +20,7 @@ The [Additional References](#testdrive-additional-references) section will provi
 1. [Configure Maven](#testdrive-step-1)
 2. [Create your first Fuse Project and explore Red Hat Developer Studio](#testdrive-step-2)
 3. [Simple File Manipulation](#testdrive-step-3)
+4. [Simple Data Transformation](#testdrive-step-4)
 
 ### Setup Developer Studio <a name="testdrive-step-0"></a>
 
@@ -448,7 +449,7 @@ mvn clean install
 
  ![Lab02](https://github.com/vinicius-martinez/fuse7-testdrive/blob/master/images/lab02-tracingmessages.png "Lab02 Tracing Messages")
 
-### Setup Developer Studio <a name="testdrive-step-3"></a>
+### Simple File Manipulation <a name="testdrive-step-3"></a>
 
 * Open **Red Hat Developer Studio**
 
@@ -586,8 +587,10 @@ cp Message1.txt /Users/vmartine/workspace/Lab03/Source
 23:32:02.363 [Camel (MyCamel) thread #3 - file://Source] INFO  _route1 - FileName: Message1.txt Content: This is Message1.txt
 ```
 
-* Once again, click on *Lab03* project with the *right mouse button* and select *Refresh*. Notice that you have a new folder named **Destination** and it contains one file with the content and name pattern that you've informed a few steps behind.
+* Once again, click on *Lab03* project with the *right mouse button* and select *Refresh*. Notice that you have a new folder named **Destination** and it contains one file with the content and name pattern that you've informed a few steps behind. Also, since we've checked the **Delete** action from **File** *component*, the **Source** folder is now empty.
 
 ![Lab03](https://github.com/vinicius-martinez/fuse7-testdrive/blob/master/images/lab03-filetransfer.png "Lab03 File Transfer")
+
+### Simple Data Transformation <a name="testdrive-step-4"></a>
 
 ## Additional References <a name="testdrive-additional-references">
