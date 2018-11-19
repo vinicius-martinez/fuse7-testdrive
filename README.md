@@ -20,7 +20,15 @@ The [Additional References](#testdrive-additional-references) section will provi
 1. [Configure Maven](#testdrive-step-1)
 2. [Create your first Fuse Project and explore Red Hat Developer Studio](#testdrive-step-2)
 3. [Simple File Manipulation](#testdrive-step-3)
-4. [Simple Data Transformation](#testdrive-step-4)
+4. [Simple Custom Bean](#testdrive-step-4)
+5. [Simple Marshall/Unmarshal](#testdrive-step-5)
+6. [Simple Data Transformation](#testdrive-step-6)
+7. [Simple SOAP WebService](#testdrive-step-7)
+8. [Simple Rest WebService](#testdrive-step-7)
+
+https://developers.redhat.com/blog/2017/01/11/automate-integration-cicd-process/
+https://developers.redhat.com/blog/2018/07/24/migrate-soap-to-rest-with-camel/
+https://developers.redhat.com/blog/2018/07/12/contract-first-api-design-with-apicurio-and-red-hat-fuse/
 
 ### Setup Developer Studio <a name="testdrive-step-0"></a>
 
@@ -591,6 +599,139 @@ cp Message1.txt /Users/vmartine/workspace/Lab03/Source
 
 ![Lab03](https://github.com/vinicius-martinez/fuse7-testdrive/blob/master/images/lab03-filetransfer.png "Lab03 File Transfer")
 
-### Simple Data Transformation <a name="testdrive-step-4"></a>
+### Simple Custom Bean <a name="testdrive-step-4"></a>
+
+* Open **Red Hat Developer Studio**
+
+* Click on: *File -> New -> Fuse Integration Project*
+
+  * *Project Name: Lab04*
+  * *Path: default value*
+  * *Use default Workspace location: checked*
+  * *Click on Finish button*
+
+![Lab04](https://github.com/vinicius-martinez/fuse7-testdrive/blob/master/images/lab04-projectcreation.png "Lab04 Fuse Project")
+
+* Change to **Fuse Integration Perspective:** *Window -> Perspective -> Open Perspective -> Fuse Integration*
+
+![Lab04](https://github.com/vinicius-martinez/fuse7-testdrive/blob/master/images/lab04-fuseintgperspective.png "Lab04 Fuse Integration Perspective")
+
+* Expand *Lab04* project and locate the **camel-context.xml** file. Click on it with the *mouse right button* and **DELETE IT**
+
+![Lab04](https://github.com/vinicius-martinez/fuse7-testdrive/blob/master/images/lab04-removecamel.png "Lab04 Remove Camel XML")
+
+* Expand *Lab03* project and *COPY (CTRL + C)* **camel-context.xml** file. Paste it into the following directory on *Lab04* project:
+
+  * *Lab04/src/main/resources/spring*
+
+* Click with the *mouse right button* on *src/main/java* directory from *Lab04* and select:
+
+  * *New -> Class*
+
+![Lab04](https://github.com/vinicius-martinez/fuse7-testdrive/blob/master/images/lab04-newclass.png "Lab04 Create New Class")
+
+* When prompted, create a new *Java Class* with the following data and afterwards click on *Finish*:
+
+  * *Package = com.redhat.fis.td.bean*
+  * *Name = MyBean*
+
+![Lab04](https://github.com/vinicius-martinez/fuse7-testdrive/blob/master/images/lab04-mybean.png "Lab04 Create MyBean Class")
+
+* Edit **MyBean** class adding the *public String upperCase(Exchage exchange)* method:
+
+```
+package com.redhat.fis.td.bean;
+
+import org.apache.camel.Exchange;
+
+public class MyBean {
+
+	public void upperCase(Exchange exchange) {
+		String messageBody = (String)exchange.getIn().getBody();
+		if (messageBody != null && !messageBody.isEmpty()) {
+			System.out.println("Current MessageBody content BEFORE Transformation: " + messageBody);
+			exchange.getIn().setBody(messageBody.toUpperCase());
+			System.out.println("Current MessageBody content AFTER Transformation: " + (String)exchange.getIn().getBody());
+		}
+	}
+}
+```
+
+* Switch back to the *Graphical Editor* and on the *Components* menu, select **ConvertBody**. Drop it on the *black arrow* between **Log** and **File** *Components*.
+
+![Lab04](https://github.com/vinicius-martinez/fuse7-testdrive/blob/master/images/lab04-convertbody.png "Lab04 Convert Body")
+
+* On the *Properties* tab from **ConvertBody** *component*, edit the following property:
+
+  * *Details: Type = java.lang.String*
+
+![Lab04](https://github.com/vinicius-martinez/fuse7-testdrive/blob/master/images/lab04-convertbodyprop.png "Lab04 Convert Body Properties")
+
+* Select the **Bean** component from the *Components* menu and drop it on the *black arrow* between **Log** and **File** *Components*.
+
+* Edit **Bean** *component* properties with the following values:
+
+  * *Details: Method = upperCase*
+  * *Details: Ref = myBean*
+
+![Lab04](https://github.com/vinicius-martinez/fuse7-testdrive/blob/master/images/lab04-bean.png "Lab04 Bean Properties")
+
+* Switch to the **Source** tab and include *myBean* on **camel-context.xml**
+
+![Lab04](https://github.com/vinicius-martinez/fuse7-testdrive/blob/master/images/lab04-beandeclaration.png "Lab04 Bean Declaration")
+
+* Your **Fuse Route** should look as follows:
+
+```
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd        http://camel.apache.org/schema/spring       http://camel.apache.org/schema/spring/camel-spring.xsd">
+    <bean class="com.redhat.fis.td.bean.MyBean" id="myBean"/>
+    <camelContext id="camel" xmlns="http://camel.apache.org/schema/spring">
+        <route id="_route1">
+            <from id="_from1" uri="file:Source?delete=true"/>
+            <log id="_log1" message="FileName: ${in.header.CamelFileName} Content: ${body}"/>
+            <convertBodyTo id="_convertBodyTo1" type="java.lang.String"/>
+            <bean id="_bean1" method="upperCase" ref="myBean"/>
+            <to id="_to1" uri="file:Destination?fileName=${date:now:yyyyMMddhhmmss}.txt"/>
+        </route>
+    </camelContext>
+</beans>
+```
+
+* Open you favorite *Text Editor* and create a new file with the following Content:
+
+```
+this is my lower-case message
+```
+
+* *Copy and Paste* this file into **Source** folder. Example:
+
+```
+vmartine at skylab in /tmp
+$ echo "this is my lower-case message" > Message1.txt
+
+vmartine at skylab in /tmp
+$ cat Message1.txt
+this is my lower-case message
+
+cp Message1.txt /Users/vmartine/workspace/Lab04/Source
+```
+
+* Switch back to the *Console* tab and the following message should be displayed:
+
+```
+02:05:12.303 [Camel (MyCamel) thread #3 - file://Source] INFO  _route1 - FileName: Message1.txt Content: this is my lower-case message
+Current MessageBody content BEFORE Transformation: this is my lower-case message
+Current MessageBody content AFTER Transformation: THIS IS MY LOWER-CASE MESSAGE
+```
+
+* Once again, click on *Lab04* project with the *right mouse button* and select *Refresh*. Notice that you have a new folder named **Destination** and it contains one file with the content and name pattern that you've informed a few steps behind. Also, since we've checked the **Delete** action from **File** *component*, the **Source** folder is now empty.
+
+![Lab04](https://github.com/vinicius-martinez/fuse7-testdrive/blob/master/images/lab04-filetransfer.png "Lab04 File Transfer")
+
+### Simple Marshall/Unmarshal <a name="testdrive-step-5"></a>
+
+### Simple Custom Bean <a name="testdrive-step-6"></a>
 
 ## Additional References <a name="testdrive-additional-references">
