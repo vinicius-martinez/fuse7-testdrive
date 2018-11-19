@@ -476,7 +476,7 @@ mvn clean install
 
 ![Lab03](https://github.com/vinicius-martinez/fuse7-testdrive/blob/master/images/lab03-cleanfuseroute.png "Lab03 Clean Fuse Route")
 
-* If you prefer, go to the *Source* tab and remove the lines between **<route>** and **</route>** tags and the graphical editor will reflect this action. Your **Fuse Route** should look like this:
+* If you prefer, go to the *Source* tab and remove the lines between **route** tags and the graphical editor will reflect this action. Your **Fuse Route** should look like this:
 
 ```
 <?xml version="1.0" encoding="UTF-8"?>
