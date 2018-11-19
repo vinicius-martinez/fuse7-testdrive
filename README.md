@@ -582,7 +582,7 @@ cp Message1.txt /Users/vmartine/workspace/Lab03/Source
 23:32:02.363 [Camel (MyCamel) thread #3 - file://Source] INFO  _route1 - FileName: Message1.txt Content: This is Message1.txt
 ```
 
-* Once again, click on *Lab03* project with the *right mouse button* and select *Refresh*. Notice that you have a new folder named **Destination** and it contains one file.
+* Once again, click on *Lab03* project with the *right mouse button* and select *Refresh*. Notice that you have a new folder named **Destination** and it contains one file with the content and name pattern that you've informed a few steps behind.
 
 ![Lab03](https://github.com/vinicius-martinez/fuse7-testdrive/blob/master/images/lab03-filetransfer.png "Lab03 File Transfer")
 
